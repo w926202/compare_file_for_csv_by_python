@@ -1,0 +1,4 @@
+﻿CrmOrderSlave_CrmOrderId,CrmOrderSlave_Id,CrmOrderSlave_TotalPayment,CrmOrderSlave_CalculateMemberTierDateTime,CrmOrderSlave_TradesOrderFinishDateTime,CrmOrderSlave_CreateDateTime
+1,1,1200,2020/2/21 13:49,2020/2/21 13:49,2020/2/21 13:49
+1,2,1200,2020/2/21 13:49,2020/2/21 13:49,2020/2/21 13:50
+1,3,1200,2020/2/21 13:49,2020/2/21 13:49,2020/2/21 13:51
