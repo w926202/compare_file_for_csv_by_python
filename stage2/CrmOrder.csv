@@ -1,4 +1,0 @@
-﻿CrmOrder_Id,CrmOrder_ShopId,CrmOrder_CrmMemberId,CrmOrder_Code,CrmOrder_TotalPayment,CrmOrder_TradesOrderCreateDateTime,CrmOrder_TradesOrderFinishDateTime,CrmOrder_CalculateMemberTierDateTime
-1,11203,52933001,Test20190527_好友_to_VIP,2400,2020/2/26 13:50,2020/2/26 13:50,2020/2/26 13:50
-2,11203,52933001,Test20190527_好友_to_VIP_2,2400,2020/2/27 13:50,2020/2/27 13:50,2020/2/27 13:50
-3,11203,52933001,Test20190527_好友_to_VIP_3,3400,2020/2/28 13:50,2020/2/28 13:50,2020/2/28 13:50

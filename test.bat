@@ -1,10 +1,6 @@
-mkdir final1
-.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2019-02-26" "/CalculateDateEnd=2019-02-26" "/CsvSourcePath=.\stage1\\" "/CsvOutputPath=.\final1\\"
-mkdir final2
-.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2020-02-27" "/CalculateDateEnd=2020-02-29" "/CsvSourcePath=.\stage2\\" "/CsvOutputPath=.\final2\\"
-mkdir final3
-.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2019-02-26" "/CalculateDateEnd=2019-02-26" "/CsvSourcePath=.\stage3\\" "/CsvOutputPath=.\final3\\"
-mkdir final4
-.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2020-02-28" "/CalculateDateEnd=2020-02-29" "/CsvSourcePath=.\stage4\\" "/CsvOutputPath=.\final4\\"
-mkdir final5
-.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2020-02-22" "/CalculateDateEnd=2020-02-22" "/CsvSourcePath=.\stage5\\" "/CsvOutputPath=.\final5\\"
+mkdir offline_final1-1
+.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2019-03-01" "/CalculateDateEnd=2019-03-01" "/CsvSourcePath=.\offline_stage1-1\\" "/CsvOutputPath=.\offline_final1-1\\"
+mkdir online_final2
+.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2019-03-01" "/CalculateDateEnd=2019-03-05" "/CsvSourcePath=.\online_stage2\\" "/CsvOutputPath=.\online_final2\\"
+mkdir general_final1
+.\exe\NineYi.MemberTier.Console.exe "/CalculateDateStart=2019-02-26" "/CalculateDateEnd=2019-02-26" "/CsvSourcePath=.\general_stage1\\" "/CsvOutputPath=.\general_final1\\"

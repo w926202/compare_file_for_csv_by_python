@@ -1,3 +1,6 @@
+
+
+@cmt1
 def compare_CrmMemberTier(a, b):
   with open(r'CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt1,\
        open(r'CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt11: #對照組

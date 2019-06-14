@@ -1330,6 +1330,7 @@
       },
       "NineYi.MemberTier.Utilities/1.0.0": {
         "dependencies": {
+          "CsvHelper": "12.1.2",
           "Dapper": "1.60.6",
           "System.ComponentModel.Annotations": "4.5.0"
         },

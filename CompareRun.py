@@ -31,22 +31,23 @@ def clear_log():
 
 def CMT():
        compare_CrmMemberTier()
-       #compare_CrmMemberTier2()
-       #compare_CrmMemberTier3()
-       #compare_CrmMemberTier4()
+       compare_CrmMemberTier2()
+       compare_CrmMemberTier3()
+       compare_CrmMemberTier4()
        #compare_CrmMemberTier5()
 
 def CMTS():
        compare_CrmMemberTierSummary1()
-       #compare_CrmMemberTierSummary2()
-       #compare_CrmMemberTierSummary3()
-       #compare_CrmMemberTierSummary4()
+       compare_CrmMemberTierSummary2()
+       compare_CrmMemberTierSummary3()
+       compare_CrmMemberTierSummary4()
        #compare_CrmMemberTierSummary5()
 
   
 def compare_CrmMemberTier():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt1,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt11: #對照組
+  
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt1,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt11: #對照組
 
     cmt_reader1 = csv.reader(cmt1)
     cmt_reader11 = csv.reader(cmt11)
@@ -56,12 +57,13 @@ def compare_CrmMemberTier():
 
       cmt_d = difflib.Differ()
       cmt_result = list(cmt_d.compare(line1,line11))
-
-
+      print("online情境1-CMT")
+      pprint(cmt_result)
+      print("比較結果:",cmt_equal,'\n')
 
 def compare_CrmMemberTier2():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final2\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt2,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final2\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt22: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt2,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt22: #對照組
 
        cmt_reader2 = csv.reader(cmt2)
        cmt_reader22 = csv.reader(cmt22)
@@ -71,13 +73,13 @@ def compare_CrmMemberTier2():
 
         cmt_d2 = difflib.Differ()
         cmt_result2 = list(cmt_d2.compare(line2,line22))
-        print ("情境2-CMT")
+        print ("offline情境1-1-CMT")
         pprint(cmt_result2)
         print("比較結果:",cmt_equal2,'\n')
 
 def compare_CrmMemberTier3():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt3,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt33: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt3,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt33: #對照組
 
        cmt_reader3 = csv.reader(cmt3)
        cmt_reader33 = csv.reader(cmt33)
@@ -87,13 +89,13 @@ def compare_CrmMemberTier3():
 
         cmt_d3 = difflib.Differ()
         cmt_result3 = list(cmt_d3.compare(line3,line33))
-        print ("情境3-CMT")
+        print ("online情境2-CMT")
         pprint(cmt_result3)
         print("比較結果:",cmt_equal3,'\n')
 
 def compare_CrmMemberTier4():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt4,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt44: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt4,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt44: #對照組
 
        cmt_reader4 = csv.reader(cmt4)
        cmt_reader44 = csv.reader(cmt44)
@@ -103,7 +105,7 @@ def compare_CrmMemberTier4():
 
         cmt_d4 = difflib.Differ()
         cmt_result4 = list(cmt_d4.compare(line4,line44))
-        print ("情境4-CMT")
+        print ("general情境4-CMT")
         pprint(cmt_result4)
         print("比較結果:",cmt_equal4,'\n')
 
@@ -127,8 +129,8 @@ def compare_CrmMemberTier5():
 
 
 def compare_CrmMemberTierSummary1():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts1,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts11: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts1,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts11: #對照組
 
        cmts_reader1 = csv.reader(cmts1)
        cmts_reader11 = csv.reader(cmts11)
@@ -138,13 +140,13 @@ def compare_CrmMemberTierSummary1():
 
         cmts_e = difflib.Differ()
         cmts_result = list(cmts_e.compare(line1,line11))
-        print ("情境CMTS-1")
+        print ("online情境CMTS-1")
         pprint(cmts_result)
         print("比較結果:",cmts_equal,'\n')
 
 def compare_CrmMemberTierSummary2():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final2\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts2,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final2\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts22: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts2,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts22: #對照組
 
        cmts_reader2 = csv.reader(cmts2)
        cmts_reader22 = csv.reader(cmts22)
@@ -154,13 +156,13 @@ def compare_CrmMemberTierSummary2():
 
         cmts_e2 = difflib.Differ()
         cmts_result2 = list(cmts_e2.compare(line2,line22))
-        print ("情境CMTS-2")
+        print ("offline情境CMTS1-1")
         pprint(cmts_result2)
         print("比較結果:",cmts_equal2,'\n')
 
 def compare_CrmMemberTierSummary3():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts3,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts33: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts3,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts33: #對照組
 
        cmts_reader3 = csv.reader(cmts3)
        cmts_reader33 = csv.reader(cmts33)
@@ -170,13 +172,13 @@ def compare_CrmMemberTierSummary3():
 
         cmts_e3 = difflib.Differ()
         cmts_result3 = list(cmts_e3.compare(line3,line33))
-        print ("情境CMTS-3")
+        print ("online情境CMTS-2")
         pprint(cmts_result3)
         print("比較結果:",cmts_equal3,'\n')
 
 def compare_CrmMemberTierSummary4():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final4\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts4,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final4\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts44: #對照組
+  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts4,\
+       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts44: #對照組
 
        cmts_reader4 = csv.reader(cmts4)
        cmts_reader44 = csv.reader(cmts44)
@@ -186,7 +188,7 @@ def compare_CrmMemberTierSummary4():
 
         cmts_e4 = difflib.Differ()
         cmts_result4 = list(cmts_e4.compare(line4,line44))
-        print ("情境CMTS-4")
+        print ("general情境CMTS-1")
         pprint(cmts_result4)
         print("比較結果:",cmts_equal4,'\n')
 
