@@ -1,215 +1,155 @@
-import csv, difflib, os, subprocess, sys
-import tkinter as tk
+import csv
+import difflib
+import subprocess
+import os
 from pprint import pprint
+from typing import List
 
-root= tk.Tk()
-canvas1 = tk.Canvas(root, width = 450, height = 250) 
-root.title("CompareRun")
-canvas1.pack()
+from TestCaseConfig import TestCaseConfig
 
 
-def launch_program(): 
-       button1 = tk.Button (root, text='跑起來',command=echo_bat_file)
-       canvas1.create_window(170, 130, window=button1)
-    
-       button2 = tk.Button (root, text='比較CrmMemberTier',command=CMT)
-       canvas1.create_window(270, 130, window=button2)
+def echo_bat_file(bat_file_path, exe_file_path=None):
+    """
+    執行bat進行測試
+    :param bat_file_path:
+    :param exe_file_path:
+    :return:
+    """
+    # 切換執行目錄
+    parent_dir_of_bat_file = os.path.dirname(os.path.abspath(bat_file_path))
+    os.chdir(parent_dir_of_bat_file)
 
-       button3 = tk.Button (root, text='比較CrmMemberTierSummary',command=CMTS)
-       canvas1.create_window(270, 170, window=button3)
-
-       button4 = tk.Button (root, text='清理', command=clear_log)
-       canvas1.create_window(270, 70, window=button4)
-
-
-def echo_bat_file():
-      subprocess.call([r'C:\Users\Jack Li\Desktop\Excel_compare_python\test.bat'])
+    # 有指定exe_file路徑就丟到batch中
+    if exe_file_path is not None:
+        subprocess.run([bat_file_path, exe_file_path], check=True, shell=True)
+    else:
+        subprocess.run([bat_file_path], check=True, shell=True)
 
 
 def clear_log():
-      subprocess.call('reset')
-
-def CMT():
-       compare_CrmMemberTier()
-       compare_CrmMemberTier2()
-       compare_CrmMemberTier3()
-       compare_CrmMemberTier4()
-       #compare_CrmMemberTier5()
-
-def CMTS():
-       compare_CrmMemberTierSummary1()
-       compare_CrmMemberTierSummary2()
-       compare_CrmMemberTierSummary3()
-       compare_CrmMemberTierSummary4()
-       #compare_CrmMemberTierSummary5()
-
-  
-def compare_CrmMemberTier():
-  
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt1,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt11: #對照組
-
-    cmt_reader1 = csv.reader(cmt1)
-    cmt_reader11 = csv.reader(cmt11)
-
-    for line1, line11 in zip(cmt_reader1, cmt_reader11):
-      cmt_equal = all(x == y for n, (x, y) in enumerate(zip(line1, line11)))
-
-      cmt_d = difflib.Differ()
-      cmt_result = list(cmt_d.compare(line1,line11))
-      print("online情境1-CMT")
-      pprint(cmt_result)
-      print("比較結果:",cmt_equal,'\n')
-
-def compare_CrmMemberTier2():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt2,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt22: #對照組
-
-       cmt_reader2 = csv.reader(cmt2)
-       cmt_reader22 = csv.reader(cmt22)
-
-       for line2, line22 in zip(cmt_reader2, cmt_reader22):
-        cmt_equal2 = all(x == y for n, (x, y) in enumerate(zip(line2, line22)))
-
-        cmt_d2 = difflib.Differ()
-        cmt_result2 = list(cmt_d2.compare(line2,line22))
-        print ("offline情境1-1-CMT")
-        pprint(cmt_result2)
-        print("比較結果:",cmt_equal2,'\n')
-
-def compare_CrmMemberTier3():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt3,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt33: #對照組
-
-       cmt_reader3 = csv.reader(cmt3)
-       cmt_reader33 = csv.reader(cmt33)
-
-       for line3, line33 in zip(cmt_reader3, cmt_reader33):
-        cmt_equal3 = all(x == y for n, (x, y) in enumerate(zip(line3, line33)))
-
-        cmt_d3 = difflib.Differ()
-        cmt_result3 = list(cmt_d3.compare(line3,line33))
-        print ("online情境2-CMT")
-        pprint(cmt_result3)
-        print("比較結果:",cmt_equal3,'\n')
-
-def compare_CrmMemberTier4():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt4,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt44: #對照組
-
-       cmt_reader4 = csv.reader(cmt4)
-       cmt_reader44 = csv.reader(cmt44)
-
-       for line4, line44 in zip(cmt_reader4, cmt_reader44):
-        cmt_equal4 = all(x == y for n, (x, y) in enumerate(zip(line4, line44)))
-
-        cmt_d4 = difflib.Differ()
-        cmt_result4 = list(cmt_d4.compare(line4,line44))
-        print ("general情境4-CMT")
-        pprint(cmt_result4)
-        print("比較結果:",cmt_equal4,'\n')
-
-def compare_CrmMemberTier5():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier.csv', 'r', newline='',encoding="utf-8-sig") as cmt5,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final3\CrmMemberTier1.csv', 'r', newline='',encoding="utf-8-sig") as cmt55: #對照組
-
-       cmt_reader5 = csv.reader(cmt5)
-       cmt_reader55 = csv.reader(cmt55)
-
-       for line5, line55 in zip(cmt_reader5, cmt_reader55):
-        cmt_equal5 = all(x == y for n, (x, y) in enumerate(zip(line5, line55)))
-
-        cmt_d5 = difflib.Differ()
-        cmt_result5 = list(cmt_d5.compare(line5,line55))
-        print ("情境5-CMT")
-        pprint(cmt_result5)
-        print("比較結果:",cmt_equal5,'\n')
+    subprocess.call('reset')
 
 
+def test_all(test_case_configs: List[TestCaseConfig]):
+    """
+    執行所有測試
+    :param test_case_configs:
+    :return:
+    """
+    for test_case_config in test_case_configs:
+        if not test_case_config.enabled:
+            continue
+
+        for bat_file_path in test_case_config.bat_file_paths:
+            try:
+                echo_bat_file(bat_file_path, test_case_config.exe_file_path)
+            except subprocess.CalledProcessError as ex:
+                # Console有丟出Exception會拋出這個Exception
+                # 目前先印出StackTrace讓程式繼續
+                print(ex)
 
 
-def compare_CrmMemberTierSummary1():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts1,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts11: #對照組
+def compare_all(test_case_configs: List[TestCaseConfig]):
+    """
+    比較所有實驗組，對照組
+    :return:
+    """
+    for test_case_config in test_case_configs:
+        if not test_case_config.enabled:
+            continue
 
-       cmts_reader1 = csv.reader(cmts1)
-       cmts_reader11 = csv.reader(cmts11)
+        experiment_paths = test_case_config.experiment_paths
+        controlled_paths = test_case_config.controlled_paths
 
-       for line1, line11 in zip(cmts_reader1, cmts_reader11):
-        cmts_equal = all(x == y for n, (x, y) in enumerate(zip(line1, line11)))
+        for experiment_path, controlled_path in zip(experiment_paths, controlled_paths):
+            compare_csv(f"{experiment_path}/CrmMemberTier.csv", f"{controlled_path}/CrmMemberTier.csv",
+                        ignore_index_list=[13,  # CrmMemberTier_CalculateGroupId
+                                           20   # CrmMemberTier_CreatedDateTime
+                                           ])
+            compare_csv(f"{experiment_path}/CrmMemberTierSummary.csv", f"{controlled_path}/CrmMemberTierSummary.csv",
+                        ignore_index_list=[15,  # CrmMemberTierSummary_UpdatedDateTime
+                                           ])
 
-        cmts_e = difflib.Differ()
-        cmts_result = list(cmts_e.compare(line1,line11))
-        print ("online情境CMTS-1")
-        pprint(cmts_result)
-        print("比較結果:",cmts_equal,'\n')
 
-def compare_CrmMemberTierSummary2():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts2,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\offline_final1-1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts22: #對照組
+def filter_out(line, ignore_index_list):
+    """
+    將ignore_index_list中的元素排除掉
+    :param line:
+    :param ignore_index_list:
+    :return:
+    """
+    return [x for index, x in enumerate(line)
+            if index not in ignore_index_list]
 
-       cmts_reader2 = csv.reader(cmts2)
-       cmts_reader22 = csv.reader(cmts22)
 
-       for line2, line22 in zip(cmts_reader2, cmts_reader22):
-        cmts_equal2 = all(x == y for n, (x, y) in enumerate(zip(line2, line22)))
+def compare_csv(experiment_path, controlled_path, ignore_index_list=[]):
+    """
+    比對csv
+    :param experiment_path: 實驗組
+    :param controlled_path: 對照組
+    :param ignore_index_list: 忽略index清單
+    :return:
+    """
+    print(f"experiment: {experiment_path}")
+    print(f"controlled: {controlled_path}")
 
-        cmts_e2 = difflib.Differ()
-        cmts_result2 = list(cmts_e2.compare(line2,line22))
-        print ("offline情境CMTS1-1")
-        pprint(cmts_result2)
-        print("比較結果:",cmts_equal2,'\n')
+    total_equality = True
 
-def compare_CrmMemberTierSummary3():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts3,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\online_final2\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts33: #對照組
+    with open(experiment_path, 'r', newline='', encoding="utf-8-sig") as experiment_file, \
+            open(controlled_path, 'r', newline='', encoding="utf-8-sig") as controlled_file:  # 對照組
 
-       cmts_reader3 = csv.reader(cmts3)
-       cmts_reader33 = csv.reader(cmts33)
+        experiment_reader = csv.reader(experiment_file)
+        controlled_reader = csv.reader(controlled_file)
 
-       for line3, line33 in zip(cmts_reader3, cmts_reader33):
-        cmts_equal3 = all(x == y for n, (x, y) in enumerate(zip(line3, line33)))
+        # 移掉CSV Header
+        zipped = list(zip(experiment_reader, controlled_reader))
+        zipped.pop(0)
 
-        cmts_e3 = difflib.Differ()
-        cmts_result3 = list(cmts_e3.compare(line3,line33))
-        print ("online情境CMTS-2")
-        pprint(cmts_result3)
-        print("比較結果:",cmts_equal3,'\n')
+        for line_experiment, line_controlled in zipped:
+            # 忽略不比較的元素
+            line_experiment = filter_out(line_experiment, ignore_index_list)
+            line_controlled = filter_out(line_controlled, ignore_index_list)
 
-def compare_CrmMemberTierSummary4():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts4,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\general_final1\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts44: #對照組
+            line_equality = all(x == y for n, (x, y) in enumerate(zip(line_experiment, line_controlled)))
 
-       cmts_reader4 = csv.reader(cmts4)
-       cmts_reader44 = csv.reader(cmts44)
+            # 只有不相等的才Show結果
+            if not line_equality:
+                print("比較結果:", line_equality, '\n')
+                differ = difflib.Differ()
+                differ_compare_list = list(differ.compare(line_experiment, line_controlled))
+                pprint(differ_compare_list)
+                total_equality = False
 
-       for line4, line44 in zip(cmts_reader4, cmts_reader44):
-        cmts_equal4 = all(x == y for n, (x, y) in enumerate(zip(line4, line44)))
+    if total_equality:
+        print("全等")
 
-        cmts_e4 = difflib.Differ()
-        cmts_result4 = list(cmts_e4.compare(line4,line44))
-        print ("general情境CMTS-1")
-        pprint(cmts_result4)
-        print("比較結果:",cmts_equal4,'\n')
 
-def compare_CrmMemberTierSummary5():
-  with open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final5\CrmMemberTierSummary.csv', 'r', newline='',encoding="utf-8-sig") as cmts5,\
-       open(r'C:\Users\Jack Li\Desktop\Excel_compare_python\final5\CrmMemberTierSummary1.csv', 'r', newline='',encoding="utf-8-sig") as cmts55: #對照組
+def get_test_case_configs() -> List[TestCaseConfig]:
+    exe_file_path = r"C:\91APP\NineYi.MemberTier\NineYi.MemberTier.Console\bin\Release\netcoreapp2.2\win-x64\publish" \
+                    r"\NineYi.MemberTier.Console.exe"
 
-       cmts_reader5 = csv.reader(cmts5)
-       cmts_reader55 = csv.reader(cmts55)
+    test_case_base_path = r"C:\Users\Alex Tann\Google 雲端硬碟\會員重構資料"
 
-       for line5, line55 in zip(cmts_reader5, cmts_reader55):
-        cmts_equal5 = all(x == y for n, (x, y) in enumerate(zip(line5, line55)))
-        
-        cmts_e5 = difflib.Differ()
-        cmts_result5 = list(cmts_e5.compare(line5,line55))
-        print ("情境CMTS-5")
-        pprint(cmts_result5)
-        print("比較結果:",cmts_equal5,'\n')
-       
+    test_case_configs = [
+        TestCaseConfig(list(range(1, 7, 1)) + ['Demo'], fr"{test_case_base_path}\KPL\線上可勾稽退貨升降等", exe_file_path, True),
+        TestCaseConfig(range(1, 7, 1), fr"{test_case_base_path}\KPL\線下可勾稽退貨升降等", exe_file_path),
+        TestCaseConfig(range(1, 6, 1), fr"{test_case_base_path}\KPL\一般升降等", exe_file_path, False),
+        TestCaseConfig([1], fr"{test_case_base_path}\KPL\手動升降等", exe_file_path, False),
+        TestCaseConfig(range(1, 4, 1), fr"{test_case_base_path}\KPL\HistoryRepo扣到0不降等", exe_file_path, False),
+    ]
+
+    return test_case_configs
+
+
+def main():
+    test_case_configs = get_test_case_configs()
+
+    # 執行.bat
+    test_all(test_case_configs)
+
+    # 比對資料
+    compare_all(test_case_configs)
+
 
 if __name__ == '__main__':
-       launch_program()
-
-root.mainloop()
+    main()
